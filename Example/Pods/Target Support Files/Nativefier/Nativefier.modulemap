@@ -1,0 +1,6 @@
+framework module Nativefier {
+  umbrella header "Nativefier-umbrella.h"
+
+  export *
+  module * { export * }
+}

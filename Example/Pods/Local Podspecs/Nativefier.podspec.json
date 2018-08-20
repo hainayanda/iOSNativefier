@@ -1,0 +1,27 @@
+{
+  "name": "Nativefier",
+  "version": "0.1.0",
+  "summary": "A short description of Nativefier.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/nayandaCatch/Nativefier",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "nayandaCatch": "nayanda1@outlook.com"
+  },
+  "source": {
+    "git": "https://github.com/nayandaCatch/Nativefier.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "Nativefier/Classes/**/*",
+  "dependencies": {
+    "HandyJSON": [
+      "~> 4.1.1"
+    ]
+  }
+}
