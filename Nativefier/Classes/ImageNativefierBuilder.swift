@@ -39,8 +39,8 @@ public class ImageNativefierBuilder {
         return self
     }
     
-    public func build() throws -> Nativefier<UIImage> {
-        let nativefier : Nativefier<UIImage> = ImageNativefier(maxRamCount: maxRamCount!, maxDiskCount: maxDiskCount!)
+    public func build() -> ImageNativefier {
+        let nativefier : ImageNativefier = ImageNativefier(maxRamCount: maxRamCount!, maxDiskCount: maxDiskCount!)
         nativefier.fetcher = self.fetcher
         nativefier.delegate = self.delegate
         return nativefier

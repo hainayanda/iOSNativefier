@@ -121,19 +121,19 @@ myCache.asyncGet(forKey: "myKey", onComplete: { object in
 ### Using Delegate
 If you need to use delegate, you need to implement the delegate and then put it in your cache is it will executed by the cache.
 The delegate method you can use is :
-- nativefier(_ nativefier : Any , onFailedFecthFor key: String) -> Any?
+- **nativefier(_ nativefier : Any , onFailedFecthFor key: String) -> Any?**
 
 will be executed if fetcher failed to get the object, you can return any default object and it will not stored in the cache
-- nativefier(_ nativefier : Any, memoryWillRemove singleObject: Any, for key: String)
+- **nativefier(_ nativefier : Any, memoryWillRemove singleObject: Any)**
 
 will be executed if nativefier is about to remove some object from memory
-- nativefierWillClearMemory(_ nativefier : Any)
+- **nativefierWillClearMemory(_ nativefier : Any)**
 
 will be executed if nativefier will clear the memory
-- nativefier(_ nativefier : Any, diskWillRemove singleObject: Any, for key: String)
+- **nativefier(_ nativefier : Any, diskWillRemove singleObject: Any)**
 
 will be executed if nativefier is about to remove some object from disk
-- nativefierWillClearDisk(_ nativefier : Any)
+- **nativefierWillClearDisk(_ nativefier : Any)**
 
 will be executed if nativefier will clear the disk
 <br>

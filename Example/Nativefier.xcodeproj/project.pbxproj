@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		51EFB07AE9BA69C34B3B4854 /* Pods_Nativefier_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08CD96FDCF3AD5816BD8DF76 /* Pods_Nativefier_Tests.framework */; };
 		607FACEC1AFB9204008FA782 /* HandyJSONTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* HandyJSONTest.swift */; };
+		BB695137212E9A80002B3E43 /* ImageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB695136212E9A80002B3E43 /* ImageTest.swift */; };
 		BBE07A6C212AD80E00D3FEFA /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE07A6B212AD80E00D3FEFA /* Util.swift */; };
 		BBE07A6E212AD85100D3FEFA /* CustomSerializerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE07A6D212AD85100D3FEFA /* CustomSerializerTest.swift */; };
 /* End PBXBuildFile section */
@@ -22,6 +23,7 @@
 		81D54286B3FF7B857923EDA7 /* Pods-Nativefier_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nativefier_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Nativefier_Tests/Pods-Nativefier_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		9BFC637FC4ADDD3E209EE440 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		B6C8EC2BCCC27CD89D23AD85 /* Pods-Nativefier_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nativefier_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Nativefier_Tests/Pods-Nativefier_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		BB695136212E9A80002B3E43 /* ImageTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTest.swift; sourceTree = "<group>"; };
 		BBE07A6B212AD80E00D3FEFA /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		BBE07A6D212AD85100D3FEFA /* CustomSerializerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSerializerTest.swift; sourceTree = "<group>"; };
 		BE1F8A15427F58D3362A9D7C /* Nativefier.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Nativefier.podspec; path = ../Nativefier.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
@@ -74,6 +76,7 @@
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 				BBE07A6B212AD80E00D3FEFA /* Util.swift */,
 				BBE07A6D212AD85100D3FEFA /* CustomSerializerTest.swift */,
+				BB695136212E9A80002B3E43 /* ImageTest.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -221,6 +224,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				607FACEC1AFB9204008FA782 /* HandyJSONTest.swift in Sources */,
+				BB695137212E9A80002B3E43 /* ImageTest.swift in Sources */,
 				BBE07A6E212AD85100D3FEFA /* CustomSerializerTest.swift in Sources */,
 				BBE07A6C212AD80E00D3FEFA /* Util.swift in Sources */,
 			);
