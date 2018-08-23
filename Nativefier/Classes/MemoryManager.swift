@@ -7,10 +7,24 @@
 
 import Foundation
 
-class MemoryManager<T : AnyObject> {
+class MemoryManager<T : AnyObject> : NSObject, NSCacheDelegate {
     
     fileprivate let memoryCache : NSCache<NSString, T>
-    var willRemoveClosure : ((String, T) -> Void)?
+    var _willRemoveClosure : ((T) -> Void)?
+    var willRemoveClosure : ((T) -> Void)? {
+        get {
+            return _willRemoveClosure
+        }
+        set {
+            _willRemoveClosure = newValue
+            if willRemoveClosure != nil {
+                memoryCache.delegate = self
+            }
+            else {
+                memoryCache.delegate = nil
+            }
+        }
+    }
     var willClearClosure : (()->Void)?
     init(maxCount : Int) {
         memoryCache = NSCache<NSString, T>()
@@ -37,8 +51,8 @@ class MemoryManager<T : AnyObject> {
     }
     
     func remove(forKey key: String){
-        if let action: ((String, T) -> Void) = willRemoveClosure, isExist(key: key), let obj : T = get(forKey: key) {
-            action(key, obj)
+        if let action: ((T) -> Void) = willRemoveClosure, let obj : T = get(forKey: key) {
+            action(obj)
         }
         memoryCache.removeObject(forKey: key as NSString)
     }
@@ -52,6 +66,12 @@ class MemoryManager<T : AnyObject> {
     
     func isExist(key: String) -> Bool {
         return memoryCache.object(forKey: key as NSString) != nil
+    }
+    
+    func cache(_ cache: NSCache<AnyObject, AnyObject>, willEvictObject obj: Any) {
+        if let action : (T) -> Void = willRemoveClosure, let obj : T = obj as? T {
+            action(obj)
+        }
     }
     
 }

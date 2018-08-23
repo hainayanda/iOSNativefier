@@ -17,7 +17,7 @@ class DiskManager<T : AnyObject> {
     fileprivate var index : SynchronizedArray<String> = SynchronizedArray()
     fileprivate var pendingWrite : [String : T] = [:]
     fileprivate var pendingRemove : SynchronizedArray<String> = SynchronizedArray()
-    var willRemoveClosure : ((String, T) -> Void)?
+    var willRemoveClosure : ((T) -> Void)?
     var willClearClosure : (()->Void)?
     
     init(maxCount : Int, containerName : String, serializer : NativefierSerializerProtocol) {
@@ -132,6 +132,7 @@ class DiskManager<T : AnyObject> {
                     }
                     catch {}
                 }
+                self.isRemoving = false
             }
         }
     }
@@ -236,12 +237,11 @@ class DiskManager<T : AnyObject> {
     fileprivate func deleteFile(fileName : String) throws {
         let path = (diskPath as NSString).appendingPathComponent(fileName)
         let url = URL(fileURLWithPath: path)
-        if let action: ((String, T) -> Void) = willRemoveClosure {
+        if let action: ((T) -> Void) = willRemoveClosure {
             do {
                 let data = try Data.init(contentsOf: url)
                 if let obj : T = serializer.deserialize(data: data) as? T {
-                    let key = String(fileName.split(separator: ".").first!)
-                    action(key, obj)
+                    action(obj)
                 }
             }
             catch{}

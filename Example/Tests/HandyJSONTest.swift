@@ -5,53 +5,17 @@ import Nimble
 import Nativefier
 import HandyJSON
 
-var myObjectNativefier : HandyJSONNativefier<MyObject> = NativefierBuilder.getForHandyJSON().set(containerName: "myObject").set(fetcher: { (key) -> MyObject in
+var myObjectNativefier : HandyJSONNativefier<MyObject> = NativefierBuilder.getForHandyJSON().set(containerName: "test").set(fetcher: { (key) -> MyObject in
     return objectCreator(string: "fetched", number: 5)
 })
 .set(maxRamCount: 2).set(maxDiskCount: 4).build()
 
-extension Array where Element : Equatable {
-    
-    static func == (lhs: Array<Element>, rhs: Array<Element>) -> Bool {
-        if lhs.count != rhs.count {
-            return false
-        }
-        for member in lhs {
-            if !rhs.contains(member){
-                return false
-            }
-        }
-        return true
-    }
-    
-    static func == (lhs: Array<Element>?, rhs: Array<Element>) -> Bool {
-        if let lhs : Array<Element> = lhs {
-            return lhs == rhs
-        }
-        return false
-    }
-    
-    static func == (lhs: Array<Element>, rhs: Array<Element>?) -> Bool {
-        if let rhs : Array<Element> = rhs {
-            return lhs == rhs
-        }
-        return false
-    }
-}
-
-func == <T : Equatable>(lhs: Array<T>?, rhs: Array<T>?) -> Bool {
-    if let lhs : Array<T> = lhs, let rhs : Array<T> = rhs {
-        return lhs == rhs
-    }
-    if lhs == nil && rhs == nil {
-        return true
-    }
-    return false
-}
-
-class SubObject : Equatable {
+class SubObject : HandyJSON, Equatable {
     static func == (lhs: SubObject, rhs: SubObject) -> Bool {
         return lhs.number == rhs.number && lhs.string == lhs.string
+    }
+    
+    required init() {
     }
     
     var string : String?
@@ -103,17 +67,14 @@ func objectCreator(string : String, number : Int) -> MyObject{
 }
 
 class MyObjectNativefierSpec : QuickSpec {
-    override func setUp() {
-        myObjectNativefier = NativefierBuilder.getForHandyJSON().set(containerName: "myObject").set(fetcher: { (key) -> MyObject in
-            return objectCreator(string: "fetched", number: 5)
-        })
-        .set(maxRamCount: 2)
-        .set(maxDiskCount: 4)
-        .build()
+    
+    override func tearDown() {
+        super.tearDown()
+        myObjectNativefier.clear()
     }
     
     override func spec() {
-        describe("should pass"){
+        describe("positive test"){
             it("can store"){
                 let created = objectCreator(string: "one", number: 1)
                 myObjectNativefier["one"] = created
@@ -132,20 +93,23 @@ class MyObjectNativefierSpec : QuickSpec {
                 }
                 n = 4
                 while(n > 0){
-                    n -= 1
                     let obj = myObjectNativefier["\(n)"]
-                    expect(obj != nil) == true
-                    expect(created.contains(obj!)) == true
+                    if let obj : MyObject = obj {
+                        expect(created.contains(obj)) == true
+                    }
+                    else {
+                        print("Failed when get object \(n)")
+                        fail()
+                    }
+                    n -= 1
                 }
                 myObjectNativefier.clear()
             }
             it("will remove obj if full"){
-                var created : [MyObject] = []
                 var n = 5
                 while(n > 0){
                     let obj = objectCreator(string: "\(n)", number: n)
                     myObjectNativefier["\(n)"] = obj
-                    created.append(obj)
                     n -= 1
                 }
                 let obj = myObjectNativefier["5"]
@@ -165,7 +129,7 @@ class MyObjectNativefierSpec : QuickSpec {
                 myObjectNativefier.clear()
             }
         }
-        describe("should fail"){
+        describe("negative test"){
             it("cannot stored object more than it should be"){
                 var n = 5
                 while(n > 0){
@@ -174,19 +138,7 @@ class MyObjectNativefierSpec : QuickSpec {
                     n -= 1
                 }
                 let obj = myObjectNativefier["5"]
-                expect(obj) == objectCreator(string: "5", number: 5)
-                expect(obj == nil) == false
-                myObjectNativefier.clear()
-            }
-            it("will fetch if not found"){
-                var n = 5
-                while(n > 0){
-                    let obj = objectCreator(string: "\(n)", number: n)
-                    myObjectNativefier["\(n)"] = obj
-                    n -= 1
-                }
-                let obj = myObjectNativefier.getOrFetch(forKey: "5")
-                expect(obj) == nil
+                expect(obj == nil) == true
                 myObjectNativefier.clear()
             }
         }

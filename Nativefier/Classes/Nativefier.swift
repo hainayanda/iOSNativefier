@@ -27,9 +27,9 @@ public class Nativefier<T : AnyObject> : NSObject {
                 return
             }
             memoryManager.willClearClosure = { self.delegate?.nativefierWillClearMemory?(self) }
-            memoryManager.willRemoveClosure = { key, obj in self.delegate?.nativefier?(self, memoryWillRemove: obj, for: key)}
+            memoryManager.willRemoveClosure = { obj in self.delegate?.nativefier?(self, memoryWillRemove: obj)}
             diskManager.willClearClosure = { self.delegate?.nativefierWillClearDisk?(self) }
-            diskManager.willRemoveClosure = { key, obj in self.delegate?.nativefier?(self, diskWillRemove: obj, for: key)}
+            diskManager.willRemoveClosure = { obj in self.delegate?.nativefier?(self, diskWillRemove: obj)}
         }
     }
     

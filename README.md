@@ -22,7 +22,7 @@ for changelog check [here](CHANGELOG.md)
 ---
 ## Installation
 ### CocoaPods
-On progress
+pod 'Eatr', '~> 0.1.0'
 
 ### Manually
 1. Clone this repository.

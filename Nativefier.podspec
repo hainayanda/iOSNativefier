@@ -156,6 +156,8 @@ Pod::Spec.new do |s|
 
   s.source_files = 'Nativefier/Classes/**/*'
   
+  s.swift_version = '3.2'
+  
   # s.resource_bundles = {
   #   'Nativefier' => ['Nativefier/Assets/*.png']
   # }

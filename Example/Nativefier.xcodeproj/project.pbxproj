@@ -8,7 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		51EFB07AE9BA69C34B3B4854 /* Pods_Nativefier_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08CD96FDCF3AD5816BD8DF76 /* Pods_Nativefier_Tests.framework */; };
-		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
+		607FACEC1AFB9204008FA782 /* HandyJSONTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* HandyJSONTest.swift */; };
+		BBE07A6C212AD80E00D3FEFA /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE07A6B212AD80E00D3FEFA /* Util.swift */; };
+		BBE07A6E212AD85100D3FEFA /* CustomSerializerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE07A6D212AD85100D3FEFA /* CustomSerializerTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -16,10 +18,12 @@
 		3A1685BD891B4A1CE6E366EB /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		607FACE51AFB9204008FA782 /* Nativefier_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Nativefier_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
+		607FACEB1AFB9204008FA782 /* HandyJSONTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandyJSONTest.swift; sourceTree = "<group>"; };
 		81D54286B3FF7B857923EDA7 /* Pods-Nativefier_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nativefier_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Nativefier_Tests/Pods-Nativefier_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		9BFC637FC4ADDD3E209EE440 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		B6C8EC2BCCC27CD89D23AD85 /* Pods-Nativefier_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nativefier_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Nativefier_Tests/Pods-Nativefier_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		BBE07A6B212AD80E00D3FEFA /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
+		BBE07A6D212AD85100D3FEFA /* CustomSerializerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSerializerTest.swift; sourceTree = "<group>"; };
 		BE1F8A15427F58D3362A9D7C /* Nativefier.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Nativefier.podspec; path = ../Nativefier.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 /* End PBXFileReference section */
 
@@ -66,8 +70,10 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				607FACEB1AFB9204008FA782 /* Tests.swift */,
+				607FACEB1AFB9204008FA782 /* HandyJSONTest.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
+				BBE07A6B212AD80E00D3FEFA /* Util.swift */,
+				BBE07A6D212AD85100D3FEFA /* CustomSerializerTest.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -133,7 +139,6 @@
 					607FACE41AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
 						LastSwiftMigration = 0900;
-						TestTargetID = 607FACCF1AFB9204008FA782;
 					};
 				};
 			};
@@ -215,7 +220,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				607FACEC1AFB9204008FA782 /* Tests.swift in Sources */,
+				607FACEC1AFB9204008FA782 /* HandyJSONTest.swift in Sources */,
+				BBE07A6E212AD85100D3FEFA /* CustomSerializerTest.swift in Sources */,
+				BBE07A6C212AD80E00D3FEFA /* Util.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -343,7 +350,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Nativefier_Example.app/Nativefier_Example";
 			};
 			name = Debug;
 		};
@@ -361,7 +367,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Nativefier_Example.app/Nativefier_Example";
 			};
 			name = Release;
 		};
