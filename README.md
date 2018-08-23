@@ -84,14 +84,14 @@ class MyOwnSerializer : NativefierSerializerProtocol{
 And then create your cache
 
 ```swift
-let handyJSONCache = NativefierBuilder.getForAnyObject<MyObject>().set(containerName: "myobject").set(maxRamCount: 100).set(maxDiskCount: 200).set(serializer: MyOwnSerializer()).build()
+let myObjectCache = NativefierBuilder.getForAnyObject<MyObject>().set(containerName: "myobject").set(maxRamCount: 100).set(maxDiskCount: 200).set(serializer: MyOwnSerializer()).build()
 ```
 
 ### Create Fetcher
 Fetcher is closure that will be executed if the object you want to get is not present in memory or disk. The object returned from the fetcher will be stored in cache
 
 ```swift
-let handyJSONCache = NativefierBuilder.getForAnyObject<MyObject>().set(containerName: "myobject").set(maxRamCount: 100).set(maxDiskCount: 200).set(serializer: MyOwnSerializer())
+let myObjectCache = NativefierBuilder.getForAnyObject<MyObject>().set(containerName: "myobject").set(maxRamCount: 100).set(maxDiskCount: 200).set(serializer: MyOwnSerializer())
     .set(fetcher: { key in
         //ANY CODE TO FETCH THE OBJECT USING THE GIVEN KEY
         return fetchedObject
