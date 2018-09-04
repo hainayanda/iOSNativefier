@@ -13,8 +13,13 @@ public class ImageNativefierBuilder {
     fileprivate var maxDiskCount : Int?
     fileprivate var fetcher : ((_ key: String) -> UIImage?)?
     fileprivate var delegate : NativefierDelegate?
-    
+    fileprivate var maxRetryCount : Int?
     init() {}
+    
+    public func set(maxRetryCount : Int) -> ImageNativefierBuilder{
+        self.maxRetryCount = maxRetryCount
+        return self
+    }
     
     public func set(delegate : NativefierDelegate) -> ImageNativefierBuilder{
         self.delegate = delegate
@@ -43,6 +48,7 @@ public class ImageNativefierBuilder {
         let nativefier : ImageNativefier = ImageNativefier(maxRamCount: maxRamCount!, maxDiskCount: maxDiskCount!)
         nativefier.fetcher = self.fetcher
         nativefier.delegate = self.delegate
+        nativefier.maxRetryCount = self.maxRetryCount ?? 1
         return nativefier
     }
 }

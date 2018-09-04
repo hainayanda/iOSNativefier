@@ -91,6 +91,7 @@ class MyObjectNativefierSpec : QuickSpec {
                     created.append(obj)
                     n -= 1
                 }
+                Thread.sleep(until: Date(timeIntervalSinceNow: 0.5))
                 n = 4
                 while(n > 0){
                     let obj = myObjectNativefier["\(n)"]

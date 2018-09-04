@@ -11,7 +11,19 @@ public class Nativefier<T : AnyObject> : NSObject {
     
     fileprivate let memoryManager : MemoryManager<T>
     fileprivate let diskManager : DiskManager<T>
+    
+    fileprivate var _maxRetryCount : Int?
+    public var maxRetryCount : Int {
+        get {
+            return _maxRetryCount ?? 1
+        }
+        set {
+            _maxRetryCount = newValue > 0 ? newValue : 1
+        }
+    }
     public var fetcher : ((_ key: String) -> T?)?
+    
+    
     fileprivate var _delegate : NativefierDelegate?
     public var delegate : NativefierDelegate? {
         get {
@@ -71,13 +83,24 @@ public class Nativefier<T : AnyObject> : NSObject {
         if let obj : T = get(forKey: key) {
             return obj
         }
-        if fetcher != nil {
-            if let obj : T = fetcher!(key){
-                memoryManager[key] = obj
-                diskManager[key] = obj
-                return obj
+        if let fetcher : ((_ key: String) -> T?) = fetcher {
+            var i = 0;
+            while i < maxRetryCount {
+                if let obj : T = fetcher(key){
+                    memoryManager[key] = obj
+                    diskManager[key] = obj
+                    return obj
+                }
+                i += 1
             }
-            else if let obj : T = delegate?.nativefier?(self, onFailedFecthFor: key) as? T {
+            while let needRetry : Bool = delegate?.nativefier?(self, shouldRetryFetchFor: key), needRetry {
+                if let obj : T = fetcher(key){
+                    memoryManager[key] = obj
+                    diskManager[key] = obj
+                    return obj
+                }
+            }
+            if let obj : T = delegate?.nativefier?(self, onFailedFecthFor: key) as? T {
                 return obj
             }
             else {

@@ -14,7 +14,13 @@ public class HandyJSONNativefierBuilder<T> where T : AnyObject, T : HandyJSON {
     fileprivate var containerName : String?
     fileprivate var fetcher : ((_ key: String) -> T?)?
     fileprivate var delegate : NativefierDelegate?
+    fileprivate var maxRetryCount : Int?
     init() {}
+    
+    public func set(maxRetryCount : Int) -> HandyJSONNativefierBuilder<T>{
+        self.maxRetryCount = maxRetryCount
+        return self
+    }
     
     public func set(delegate : NativefierDelegate) -> HandyJSONNativefierBuilder<T>{
         self.delegate = delegate
@@ -48,6 +54,7 @@ public class HandyJSONNativefierBuilder<T> where T : AnyObject, T : HandyJSON {
         let nativefier : HandyJSONNativefier<T> = HandyJSONNativefier<T>.init(maxRamCount: maxRamCount!, maxDiskCount: maxDiskCount!, containerName: containerName!)
         nativefier.fetcher = self.fetcher
         nativefier.delegate = self.delegate
+        nativefier.maxRetryCount = self.maxRetryCount ?? 1
         return nativefier
     }
 }

@@ -14,7 +14,13 @@ public class ObjectNativefierBuilder<T : AnyObject> {
     fileprivate var serializer : NativefierSerializerProtocol?
     fileprivate var fetcher : ((_ key: String) -> T?)?
     fileprivate var delegate : NativefierDelegate?
+    fileprivate var maxRetryCount : Int?
     init() {}
+    
+    public func set(maxRetryCount : Int) -> ObjectNativefierBuilder<T>{
+        self.maxRetryCount = maxRetryCount
+        return self
+    }
     
     public func set(delegate : NativefierDelegate) -> ObjectNativefierBuilder<T>{
         self.delegate = delegate
@@ -53,6 +59,7 @@ public class ObjectNativefierBuilder<T : AnyObject> {
         let nativefier : Nativefier<T> = Nativefier<T>.init(maxRamCount: maxRamCount!, maxDiskCount: maxDiskCount!, containerName: containerName!, serializer: serializer!)
         nativefier.fetcher = self.fetcher
         nativefier.delegate = self.delegate
+        nativefier.maxRetryCount = self.maxRetryCount ?? 1
         return nativefier
     }
 }
