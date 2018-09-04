@@ -22,7 +22,7 @@ for changelog check [here](CHANGELOG.md)
 ---
 ## Installation
 ### CocoaPods
-pod 'Nativefier', '~> 0.1.0'
+pod 'Nativefier', '~> 0.1.1'
 
 ### Manually
 1. Clone this repository.
@@ -98,6 +98,20 @@ let myObjectCache = NativefierBuilder.getForAnyObject<MyObject>().set(containerN
     }).build()
 ```
 
+Fetch will be considered failed if it's return nil, you can make nativefier automatically retry if fetch is failed on the builder or the object itself
+
+```swift
+let myObjectCache = NativefierBuilder.getForAnyObject<MyObject>().set(containerName: "myobject").set(maxRamCount: 100).set(maxDiskCount: 200).set(serializer: MyOwnSerializer())
+    .set(fetcher: { key in
+        //ANY CODE TO FETCH THE OBJECT USING THE GIVEN KEY
+        return fetchedObject
+    })
+    .set(maxRetryCount: 3) //RETRY 3 TIMES
+    .build()
+
+myObjectCache.maxRetryCount = 5 //RETRY 5 TIMES
+```
+
 ### Using The Nativefier
 Using the nativefier is very easy. just use it like you use Dictionary object.
 But remember, if you want to using fetcher, its better to do it asynchronously so it wouldn't block your execution if fetch take to long
@@ -121,6 +135,10 @@ myCache.asyncGet(forKey: "myKey", onComplete: { object in
 ### Using Delegate
 If you need to use delegate, you need to implement the delegate and then put it in your cache is it will executed by the cache.
 The delegate method you can use is :
+- **nativefier(_ nativefier : Any , shouldRetryFetchFor key: String) -> Bool**
+
+will be executed if fetcher failed to get the object, if you return true then it will be try to fetch again. It's a very dangerous to force it to return true because if the fetcher is always failed then it will be looping forever. Its recommended if you're using maxRetryCount instead.
+
 - **nativefier(_ nativefier : Any , onFailedFecthFor key: String) -> Any?**
 
 will be executed if fetcher failed to get the object, you can return any default object and it will not stored in the cache
