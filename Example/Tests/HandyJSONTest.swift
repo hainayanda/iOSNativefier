@@ -8,7 +8,7 @@ import HandyJSON
 var myObjectNativefier : HandyJSONNativefier<MyObject> = NativefierBuilder.getForHandyJSON().set(containerName: "test").set(fetcher: { (key) -> MyObject in
     return objectCreator(string: "fetched", number: 5)
 })
-.set(maxRamCount: 2).set(maxDiskCount: 4).build()
+    .set(maxRamCount: 2).set(maxDiskCount: 4).build()
 
 class SubObject : HandyJSON, Equatable {
     static func == (lhs: SubObject, rhs: SubObject) -> Bool {
@@ -140,6 +140,48 @@ class MyObjectNativefierSpec : QuickSpec {
                 }
                 let obj = myObjectNativefier["5"]
                 expect(obj == nil) == true
+                myObjectNativefier.clear()
+            }
+        }
+        describe("async test"){
+            it("can do async"){
+                var created : [MyObject] = []
+                var n = 4
+                while(n > 0){
+                    let obj = objectCreator(string: "\(n)", number: n)
+                    myObjectNativefier["\(n)"] = obj
+                    created.append(obj)
+                    n -= 1
+                }
+                Thread.sleep(until: Date(timeIntervalSinceNow: 0.5))
+                n = 4
+                var completionsRun = [0, 0, 0, 0]
+                var success = false
+                while(n > 0){
+                    var m = 5
+                    while(m > 0){
+                        let i = n - 1
+                        myObjectNativefier.asyncGet(forKey: "\(n)", onComplete: { (obj) in
+                            completionsRun[i] += 1
+                            if let obj : MyObject = obj {
+                                success = created.contains(obj)
+                            }
+                            else {
+                                success = false
+                                print("Failed when get object \(n)")
+                                fail()
+                            }
+                        })
+                        m -= 1
+                    }
+                    n -= 1
+                }
+                Thread.sleep(until: Date(timeIntervalSinceNow: 2))
+                expect(success) == true
+                expect(completionsRun[0]) == 5
+                expect(completionsRun[1]) == 5
+                expect(completionsRun[2]) == 5
+                expect(completionsRun[3]) == 5
                 myObjectNativefier.clear()
             }
         }

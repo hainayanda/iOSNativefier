@@ -22,7 +22,7 @@ for changelog check [here](CHANGELOG.md)
 ---
 ## Installation
 ### CocoaPods
-pod 'Nativefier', '~> 0.1.1'
+pod 'Nativefier', '~> 0.1.2'
 
 ### Manually
 1. Clone this repository.
@@ -135,10 +135,6 @@ myCache.asyncGet(forKey: "myKey", onComplete: { object in
 ### Using Delegate
 If you need to use delegate, you need to implement the delegate and then put it in your cache is it will executed by the cache.
 The delegate method you can use is :
-- **nativefier(_ nativefier : Any , shouldRetryFetchFor key: String) -> Bool**
-
-will be executed if fetcher failed to get the object, if you return true then it will be try to fetch again. It's a very dangerous to force it to return true because if the fetcher is always failed then it will be looping forever. Its recommended if you're using maxRetryCount instead.
-
 - **nativefier(_ nativefier : Any , onFailedFecthFor key: String) -> Any?**
 
 will be executed if fetcher failed to get the object, you can return any default object and it will not stored in the cache

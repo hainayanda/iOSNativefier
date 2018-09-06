@@ -121,6 +121,7 @@
 		B8177415A61EB9A229044FE751118900 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E093C9511027E42BCEE32DEEE2B75B43 /* Filter.swift */; };
 		B84445D00EBDB3D909469F1AE4531C82 /* URLTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D5678F04287EC836E0E46DF13AE6A0 /* URLTransform.swift */; };
 		BA48926F201B8ADAEA6993ED87169FD9 /* QuickTestSuite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA80F7E7D8CA0EE6E7C7A55DE99AA83 /* QuickTestSuite.swift */; };
+		BBCABCC02140D58A0038DCBA /* FetcherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBCABCBF2140D58A0038DCBA /* FetcherManager.swift */; };
 		BBED2A0A21288AD300CEC8AB /* ImageNativefier.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBED2A0921288AD300CEC8AB /* ImageNativefier.swift */; };
 		BBED2A0C21288B0C00CEC8AB /* HandyJSONNativefier.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBED2A0B21288B0C00CEC8AB /* HandyJSONNativefier.swift */; };
 		BBED2A0E21288C2B00CEC8AB /* NativefierBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBED2A0D21288C2B00CEC8AB /* NativefierBuilder.swift */; };
@@ -345,6 +346,7 @@
 		B817DADEA7BCAA61F3DBD240889CE094 /* Pods-Nativefier_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Nativefier_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		B8F875D3BB67870C77321AC6E5EC2EAA /* DSL+Wait.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DSL+Wait.swift"; path = "Sources/Nimble/DSL+Wait.swift"; sourceTree = "<group>"; };
 		BB9FFFEB85628F832FD213A5536F01B4 /* SuiteHooks.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SuiteHooks.swift; path = Sources/Quick/Hooks/SuiteHooks.swift; sourceTree = "<group>"; };
+		BBCABCBF2140D58A0038DCBA /* FetcherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FetcherManager.swift; path = Nativefier/Classes/FetcherManager.swift; sourceTree = "<group>"; };
 		BBED2A0921288AD300CEC8AB /* ImageNativefier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ImageNativefier.swift; path = Nativefier/Classes/ImageNativefier.swift; sourceTree = "<group>"; };
 		BBED2A0B21288B0C00CEC8AB /* HandyJSONNativefier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HandyJSONNativefier.swift; path = Nativefier/Classes/HandyJSONNativefier.swift; sourceTree = "<group>"; };
 		BBED2A0D21288C2B00CEC8AB /* NativefierBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NativefierBuilder.swift; path = Nativefier/Classes/NativefierBuilder.swift; sourceTree = "<group>"; };
@@ -530,6 +532,7 @@
 				BBED2A0F21288C6000CEC8AB /* ObjectNativefierBuilder.swift */,
 				BBED2A1121289B4A00CEC8AB /* ImageNativefierBuilder.swift */,
 				BBED2A1321289C3C00CEC8AB /* HandyJSONNativefierBuilder.swift */,
+				BBCABCBF2140D58A0038DCBA /* FetcherManager.swift */,
 			);
 			name = Nativefier;
 			path = ../..;
@@ -1058,6 +1061,7 @@
 				BBED2A1421289C3C00CEC8AB /* HandyJSONNativefierBuilder.swift in Sources */,
 				BBED2A1221289B4A00CEC8AB /* ImageNativefierBuilder.swift in Sources */,
 				BBED2A0C21288B0C00CEC8AB /* HandyJSONNativefier.swift in Sources */,
+				BBCABCC02140D58A0038DCBA /* FetcherManager.swift in Sources */,
 				BBED2A1021288C6000CEC8AB /* ObjectNativefierBuilder.swift in Sources */,
 				38DAEA632EA62FA494D0B58ACD621EC6 /* ImageSerializer.swift in Sources */,
 				BEFE43EF8B0664EFAAC0E963B574494F /* MemoryManager.swift in Sources */,

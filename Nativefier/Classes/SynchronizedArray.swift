@@ -159,13 +159,19 @@ open class SynchronizedArray<T> : Sequence {
     
     public func removeLast() {
         queue.async(flags: .barrier) {
-            self.array.removeLast()
+            guard self.array.isEmpty else {
+                self.array.removeLast()
+                return
+            }
         }
     }
     
     public func removeFirst() {
         queue.async(flags: .barrier) {
-            self.array.removeFirst()
+            guard self.array.isEmpty else {
+                self.array.removeFirst()
+                return
+            }
         }
     }
     

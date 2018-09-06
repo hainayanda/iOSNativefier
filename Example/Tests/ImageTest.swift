@@ -90,5 +90,40 @@ class ImageNativefierSpec : QuickSpec {
                 imageNativefier.clear()
             }
         }
+        describe("async test"){
+            it("can do async"){
+                var created : [UIImage] = []
+                var n = 4
+                while(n > 0){
+                    let obj = imageCreator(with: n)
+                    imageNativefier["\(n)"] = obj
+                    created.append(obj)
+                    n -= 1
+                }
+                Thread.sleep(until: Date(timeIntervalSinceNow: 0.5))
+                n = 4
+                var completionsRun = [0, 0, 0, 0]
+                var success = false
+                while(n > 0){
+                    var m = 5
+                    while(m > 0){
+                        let i = n - 1
+                        imageNativefier.asyncGet(forKey: "\(n)", onComplete: { (obj) in
+                            completionsRun[i] += 1
+                            success = obj != nil
+                        })
+                        m -= 1
+                    }
+                    n -= 1
+                }
+                Thread.sleep(until: Date(timeIntervalSinceNow: 2))
+                expect(success) == true
+                expect(completionsRun[0]) == 5
+                expect(completionsRun[1]) == 5
+                expect(completionsRun[2]) == 5
+                expect(completionsRun[3]) == 5
+                imageNativefier.clear()
+            }
+        }
     }
 }

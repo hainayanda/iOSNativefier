@@ -11,6 +11,7 @@ public class Nativefier<T : AnyObject> : NSObject {
     
     fileprivate let memoryManager : MemoryManager<T>
     fileprivate let diskManager : DiskManager<T>
+    fileprivate let fetcherManager : FetcherManager<T> = FetcherManager<T>()
     
     fileprivate var _maxRetryCount : Int?
     public var maxRetryCount : Int {
@@ -93,13 +94,6 @@ public class Nativefier<T : AnyObject> : NSObject {
                 }
                 i += 1
             }
-            while let needRetry : Bool = delegate?.nativefier?(self, shouldRetryFetchFor: key), needRetry {
-                if let obj : T = fetcher(key){
-                    memoryManager[key] = obj
-                    diskManager[key] = obj
-                    return obj
-                }
-            }
             if let obj : T = delegate?.nativefier?(self, onFailedFecthFor: key) as? T {
                 return obj
             }
@@ -112,8 +106,22 @@ public class Nativefier<T : AnyObject> : NSObject {
     
     public func asyncGet(forKey key: String, onComplete : @escaping (T?) -> Void) {
         DispatchQueue.global(qos: .background).async {
-            let obj = self.getOrFetch(forKey: key)
-            onComplete(obj)
+            if let obj : T = self.get(forKey: key) {
+                onComplete(obj)
+                return
+            }
+            if let fetcher : ((_ key: String) -> T?) = self.fetcher {
+                self.fetcherManager.fetch(for: key, fetcher: fetcher, onSuccess: { (obj) in
+                    self.memoryManager[key] = obj
+                    self.diskManager[key] = obj
+                    onComplete(obj)
+                }, onFailed: {
+                    if let obj : T = self.delegate?.nativefier?(self, onFailedFecthFor: key) as? T {
+                        onComplete(obj)
+                    }
+                }, retry: self.maxRetryCount)
+            }
+            onComplete(nil)
         }
     }
     
