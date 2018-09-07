@@ -24,6 +24,10 @@ for changelog check [here](CHANGELOG.md)
 ### CocoaPods
 pod 'Nativefier', '~> 0.1.2'
 
+**or just**
+
+pod 'Nativefier'
+
 ### Manually
 1. Clone this repository.
 2. Added to your project.
