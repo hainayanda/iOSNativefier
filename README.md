@@ -49,7 +49,7 @@ The basic algorithm of nativefier is very simple
 
 ## Usage Example
 ### HandyJSON and Image
-Build the object using HttpRequestBuilder and then execute
+Build the object using NativefierBuilder
 
 - containerName is name of cache folder in disk
 - maxRamCount is max number of object can stored in memory
@@ -168,4 +168,4 @@ imageCache.delegate = self
 
 ---
 ## Contribute
-We would love you for the contribution to **iOSEatr**, just contact me to nayanda1@outlook.com or just pull request
+We would love you for the contribution to **iOSNativefier**, just contact me to nayanda1@outlook.com or just pull request
