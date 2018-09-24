@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Nativefier'
-  s.version          = '0.1.2'
+  s.version          = '0.1.3'
   s.summary          = 'Cache library for iOS'
 
 # This description is used to generate tags and improve search results.
@@ -29,7 +29,7 @@ Pod::Spec.new do |s|
     
     Requirements
       
-      - Swift 3.2 or higher
+      - Swift 4.2 or higher
       
     About Nativefier
     
@@ -152,11 +152,11 @@ Pod::Spec.new do |s|
   s.source           = { :git => 'https://github.com/nayanda1/iOSNativefier.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '12'
 
   s.source_files = 'Nativefier/Classes/**/*'
   
-  s.swift_version = '3.2'
+  s.swift_version = '4.2'
   
   # s.resource_bundles = {
   #   'Nativefier' => ['Nativefier/Assets/*.png']
@@ -165,5 +165,5 @@ Pod::Spec.new do |s|
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
   # s.dependency 'AFNetworking', '~> 2.3'
-  s.dependency 'HandyJSON', '~> 4.1.1'
+  s.dependency 'HandyJSON', '~> 4.2.0'
 end

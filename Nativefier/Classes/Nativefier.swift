@@ -25,7 +25,7 @@ public class Nativefier<T : AnyObject> : NSObject {
     public var fetcher : ((_ key: String) -> T?)?
     
     
-    fileprivate var _delegate : NativefierDelegate?
+    fileprivate weak var _delegate : NativefierDelegate?
     public var delegate : NativefierDelegate? {
         get {
             return _delegate

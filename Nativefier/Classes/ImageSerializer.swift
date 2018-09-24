@@ -11,7 +11,7 @@ import UIKit
 public class ImageSerializer : NativefierSerializerProtocol {
     public func serialize(obj: AnyObject) -> Data? {
         if let img : UIImage = obj as? UIImage {
-            return UIImagePNGRepresentation(img)
+            return img.pngData()
         }
         return nil
     }
