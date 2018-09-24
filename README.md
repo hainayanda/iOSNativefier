@@ -17,12 +17,12 @@ for changelog check [here](CHANGELOG.md)
 ---
 ## Requirements
 
-- Swift 3.2 or higher
+- Swift 4.2 or higher
 
 ---
 ## Installation
 ### CocoaPods
-pod 'Nativefier', '~> 0.1.2'
+pod 'Nativefier', '~> 0.1.3'
 
 **or just**
 
