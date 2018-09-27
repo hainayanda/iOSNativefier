@@ -1,6 +1,6 @@
 PODS:
   - HandyJSON (4.2.0)
-  - Nativefier (0.1.3):
+  - Nativefier (0.1.4):
     - HandyJSON (~> 4.2.0)
   - Nimble (7.3.1)
   - Quick (1.3.2)
@@ -22,7 +22,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   HandyJSON: 9dfc026c7d7adc1f0f8ba8b181495f0e0763b0f4
-  Nativefier: 8389fddd3cd9bacc10a8d6c475f2b92dfb99ae85
+  Nativefier: 30acf620466b32f80e3bb7dbf2aac0921598f827
   Nimble: 04f732da099ea4d153122aec8c2a88fd0c7219ae
   Quick: 2623cb30d7a7f41ca62f684f679586558f483d46
 
